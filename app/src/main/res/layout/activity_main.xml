@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16dp"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/HeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/verification_code" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/BodyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:gravity="center"
+        android:text="@string/otp_description" />
+
+    <nikhil.bhople.customotp.extra.CustomOtpView
+        android:id="@+id/otpView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_48dp"
+        android:layout_margin="@dimen/margin_30dp" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnValidate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_48dp"
+        android:text="@string/validate" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

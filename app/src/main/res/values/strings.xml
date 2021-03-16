@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Custom OTP</string>
+    <string name="otp_description">Please type verification code send to \n +XXXXXXXXXX</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="validate">validate</string>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/otpViewContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otpFieldOne"
+            style="@style/MCBOtpField" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otpFieldTwo"
+            style="@style/MCBOtpField"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otpFieldThree"
+            style="@style/MCBOtpField" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otpFieldFour"
+            style="@style/MCBOtpField" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otpFieldFive"
+            style="@style/MCBOtpField" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otpFieldSix"
+            style="@style/MCBOtpField"
+            android:imeOptions="actionDone"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:maxLength="6"
+        android:inputType="numberPassword"
+        android:textColor="@android:color/transparent"
+        android:id="@+id/otpEditText"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:id="@+id/otpOnClickView"/>
+
+</RelativeLayout>
