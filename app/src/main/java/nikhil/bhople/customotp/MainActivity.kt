@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /* Listen the callback from OTP view when user completely typed the OTP
+         so that you can perform you action like enabling the button or API calling */
         otpView.listener = {
              btnValidate.isEnabled = it
         }

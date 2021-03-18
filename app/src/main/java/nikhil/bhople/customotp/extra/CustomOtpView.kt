@@ -11,15 +11,21 @@ import kotlinx.android.synthetic.main.view_otp.view.*
 import nikhil.bhople.customotp.R
 import nikhil.bhople.customotp.extension.hideKeyboard
 import nikhil.bhople.customotp.extension.showKeyboard
-import nikhil.bhople.customotp.intdef.Digit
+import nikhil.bhople.customotp.intdef.Digit.Companion.FIVE
+import nikhil.bhople.customotp.intdef.Digit.Companion.FOUR
+import nikhil.bhople.customotp.intdef.Digit.Companion.ONE
+import nikhil.bhople.customotp.intdef.Digit.Companion.SIX
+import nikhil.bhople.customotp.intdef.Digit.Companion.THREE
+import nikhil.bhople.customotp.intdef.Digit.Companion.TWO
+import nikhil.bhople.customotp.intdef.Digit.Companion.ZERO
 
 class CustomOtpView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs), TextWatcher {
 
-    var listener: ((isAllDigitFilled: Boolean) -> Unit)? = null
-    private var delayInMillis = 1000L
+    var listener: ((isAllDigitFilled: Boolean) -> Unit)? = null // listener is used to get callback when OTP is completely typed
+    private val delayInMillis = 1000L // Specify your own delay for masking OTP after typed
 
     init {
         View.inflate(context, R.layout.view_otp, this)
@@ -33,14 +39,20 @@ class CustomOtpView @JvmOverloads constructor(
 
     fun getOtp(): String = otpEditText.text.toString()
 
+    /**
+     * When user type wrong OTP and you want to clear after API call then call this method
+     */
     fun clearOtp() {
         val otp = getOtp()
         repeat(otp.length) {
-            val newOtp = getOtp().dropLast(Digit.ONE)
+            val newOtp = getOtp().dropLast(ONE)
             otpEditText.setText(newOtp)
         }
     }
 
+    /**
+     * autoFillOtp method is used to autofill the OTP when user received by SMS
+     */
     fun autoFillOtp(smsOtpValue: String) {
         smsOtpValue.toCharArray().forEachIndexed { index, indexedValue ->
             setChatAt(index, indexedValue.toString())
@@ -58,8 +70,8 @@ class CustomOtpView @JvmOverloads constructor(
             val toCharArray = userInput.toString().toCharArray()
             var position = toCharArray.size
             clearChatAt(position)
-            if (position != Digit.ZERO) {
-                setChatAt(position, toCharArray[position - Digit.ONE].toString())
+            if (position != ZERO) {
+                setChatAt(position, toCharArray[position - ONE].toString())
                 position++
                 clearChatAt(position)
             }
@@ -68,27 +80,27 @@ class CustomOtpView @JvmOverloads constructor(
 
     private fun setChatAt(position: Int, charAtIndex: String) {
         when (position) {
-            Digit.ONE -> {
+            ONE -> {
                 otpFieldOne.setText(charAtIndex)
                 changeInputType(otpFieldOne, true)
             }
-            Digit.TWO -> {
+            TWO -> {
                 otpFieldTwo.setText(charAtIndex)
                 changeInputType(otpFieldTwo, true)
             }
-            Digit.THREE -> {
+            THREE -> {
                 otpFieldThree.setText(charAtIndex)
                 changeInputType(otpFieldThree, true)
             }
-            Digit.FOUR -> {
+            FOUR -> {
                 otpFieldFour.setText(charAtIndex)
                 changeInputType(otpFieldFour, true)
             }
-            Digit.FIVE -> {
+            FIVE -> {
                 otpFieldFive.setText(charAtIndex)
                 changeInputType(otpFieldFive, true)
             }
-            Digit.SIX -> {
+            SIX -> {
                 otpFieldSix.setText(charAtIndex)
                 changeInputType(otpFieldSix, true)
                 otpEditText.hideKeyboard()
@@ -100,28 +112,28 @@ class CustomOtpView @JvmOverloads constructor(
 
     private fun clearChatAt(position: Int) {
         when (position) {
-            Digit.ZERO, Digit.ONE -> {
+            ZERO, ONE -> {
                 otpFieldOne.text?.clear()
                 changeInputType(otpFieldOne, false)
             }
-            Digit.TWO -> {
+            TWO -> {
                 otpFieldTwo.text?.clear()
                 changeInputType(otpFieldTwo, false)
             }
-            Digit.THREE -> {
+            THREE -> {
                 otpFieldThree.text?.clear()
                 changeInputType(otpFieldThree, false)
             }
-            Digit.FOUR -> {
+            FOUR -> {
                 otpFieldFour.text?.clear()
                 changeInputType(otpFieldFour, false)
                 listener?.invoke(false)
             }
-            Digit.FIVE -> {
+            FIVE -> {
                 otpFieldFive.text?.clear()
                 changeInputType(otpFieldFive, false)
             }
-            Digit.SIX -> {
+            SIX -> {
                 otpFieldSix.text?.clear()
                 changeInputType(otpFieldSix, false)
                 listener?.invoke(false)
@@ -130,6 +142,13 @@ class CustomOtpView @JvmOverloads constructor(
         }
     }
 
+
+    /**
+     *  if you don't want to show typed OTP by user then refactor changeInputType method like below
+     *  private fun changeInputType(otp: AppCompatEditText) {
+             otp.transformationMethod = BiggerDotPasswordTransformationMethod
+        }
+     */
     private fun changeInputType(otp: AppCompatEditText, isPasswordTyped: Boolean) {
         if (isPasswordTyped) {
             postDelayed({

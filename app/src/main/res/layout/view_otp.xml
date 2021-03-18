@@ -11,27 +11,27 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otpFieldOne"
-            style="@style/MCBOtpField" />
+            style="@style/StyleOtpField" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otpFieldTwo"
-            style="@style/MCBOtpField"/>
+            style="@style/StyleOtpField"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otpFieldThree"
-            style="@style/MCBOtpField" />
+            style="@style/StyleOtpField" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otpFieldFour"
-            style="@style/MCBOtpField" />
+            style="@style/StyleOtpField" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otpFieldFive"
-            style="@style/MCBOtpField" />
+            style="@style/StyleOtpField" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otpFieldSix"
-            style="@style/MCBOtpField"
+            style="@style/StyleOtpField"
             android:imeOptions="actionDone"/>
     </LinearLayout>
 
